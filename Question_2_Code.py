@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 Files = [
-    '2024-British Grand Prix-Race.csv',
-    '2024-British Grand Prix-Race-weather.csv'
+    '2024-Chinese Grand Prix-Race.csv',
+    '2024-Chinese Grand Prix-Race-weather.csv'
 ]
 
 Driver = ['ALO', 'LEC', 'PIA', 'VER']
@@ -39,13 +39,13 @@ las = a.loc[a.Driver == Driver[2], ['Time', 'SpeedI2']]
 pas = a.loc[a.Driver == Driver[3], ['Time', 'SpeedI2']]
 
 # Plot graphs
-fig, axs = plt.subplots(1, 2, figsize=(20, 10))
+fig, axs = plt.subplots(1, 2, figsize=(25, 10))
 
 # Wind Speed vs Time Graph
 sns.lineplot(x=aws['Time'], y=aws['WindSpeed'], ax=axs[0])
-axs[0].set_title(Files[0][5:-9], fontsize=20)
-axs[0].set_ylabel("Wind Speed", fontsize=20)
-axs[0].set_xlabel("Time", fontsize=20)
+axs[0].set_title("Wind Speed vs Time", fontsize=20)
+axs[0].set_ylabel("Wind Speed (m/s)", fontsize=20)
+axs[0].set_xlabel("Time (pm)", fontsize=20)
 tick_locs1 = np.arange(aws['Time'].min(), aws['Time'].max(), 10)
 axs[0].set_xticks(tick_locs1)
 tick_labels1 = [f"{x//60:02}:{x%60:02}" for x in tick_locs1]
@@ -57,10 +57,10 @@ sns.lineplot(x=has['Time'], y=has['SpeedI2'], label=Driver[0], ax=axs[1])
 sns.lineplot(x=vas['Time'], y=vas['SpeedI2'], label=Driver[1], ax=axs[1])
 sns.lineplot(x=las['Time'], y=las['SpeedI2'], label=Driver[2], ax=axs[1])
 sns.lineplot(x=pas['Time'], y=pas['SpeedI2'], label=Driver[3], ax=axs[1])
-axs[1].set_title(Files[0][5:-9], fontsize=20)
-axs[1].set_ylabel("Speed", fontsize=20)
-axs[1].set_xlabel("Time", fontsize=20)
-tick_locs2 = np.arange(has['Time'].min(), has['Time'].max(), 10)
+axs[1].set_title("Driving Speed vs Time", fontsize=20)
+axs[1].set_ylabel("Speed (km/h)", fontsize=20)
+axs[1].set_xlabel("Time (pm)", fontsize=20)
+tick_locs2 = np.arange(aws['Time'].min(), aws['Time'].max(), 10)
 axs[1].set_xticks(tick_locs2)
 tick_labels2 = [f"{x//60:02}:{x%60:02}" for x in tick_locs2]
 axs[1].set_xticklabels(tick_labels2, fontsize=15)
